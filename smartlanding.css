@@ -1,0 +1,1147 @@
+/* ============================================
+   NEXUS AI SMART RING LAUNCH PAGE
+   Production-Ready CSS3 Stylesheet
+   Cyberpunk Dark Theme with Neon Accents
+   ============================================ */
+
+/* ============================================
+   1. GLOBAL RESET & ROOT VARIABLES
+   ============================================ */
+
+/* CSS Custom Properties for easy theming */
+:root {
+    --color-bg-primary: #0b0b0f;      /* Pitch black background */
+    --color-bg-secondary: #1a1a2e;    /* Slightly lighter for contrast */
+    --color-accent-primary: #00f2fe;  /* Neon cyan */
+    --color-accent-secondary: #ff006e; /* Hot pink accent */
+    --color-text-primary: #ffffff;    /* Pure white text */
+    --color-text-secondary: #b0b0c0;  /* Muted text */
+    --color-glass-bg: rgba(255, 255, 255, 0.05); /* For glassmorphism */
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-fast: all 0.15s ease-out;
+    --shadow-glow: 0 0 20px rgba(0, 242, 254, 0.3);
+    --shadow-deep: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Universal box-sizing inheritance */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base HTML element styling */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+/* Body styling - dark cyberpunk theme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Remove default link styling */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+/* Button base styles */
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+/* ============================================
+   2. UTILITY CLASSES
+   ============================================ */
+
+/* Container max-width wrapper for content sections */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Glassmorphism effect - translucent cards with backdrop blur */
+.glassmorphism {
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 16px;
+}
+
+/* Gradient text effect for headings */
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-accent-primary), #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Section header styling */
+.section__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.section__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   3. NAVIGATION HEADER
+   ============================================ */
+
+/* Sticky navbar container */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(11, 11, 15, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+/* Navbar internal layout - flexbox for horizontal alignment */
+.navbar__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+/* Logo section - flex container for icon and text */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Logo SVG icon sizing */
+.logo__icon {
+    width: 40px;
+    height: 40px;
+    animation: logo-pulse 2s ease-in-out infinite;
+}
+
+/* Logo pulsing animation */
+@keyframes logo-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Navigation menu - horizontal list layout */
+.navbar__menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+/* Navigation links styling */
+.navbar__link {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Navigation link hover effect - underline animation */
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent-primary);
+    transition: var(--transition-smooth);
+}
+
+.navbar__link:hover::after {
+    width: 100%;
+}
+
+.navbar__link:hover {
+    color: var(--color-accent-primary);
+}
+
+/* CTA button in navbar */
+.navbar__cta {
+    padding: 10px 25px;
+    background: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+.navbar__cta:hover {
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+    transform: scale(1.05);
+}
+
+/* Responsive navbar - stack on mobile */
+@media (max-width: 768px) {
+    .navbar__container {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 80px;
+    }
+
+    .navbar__menu {
+        gap: 20px;
+        font-size: 0.85rem;
+    }
+
+    .navbar__cta {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   4. HERO SECTION
+   ============================================ */
+
+/* Hero section - full viewport height with content centering */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 20px 60px;
+    margin-top: 80px;
+}
+
+/* Hero content wrapper - centered text layout */
+.hero__content {
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+}
+
+/* Hero main title */
+.hero__title {
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+/* Hero subtitle */
+.hero__subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--color-text-secondary);
+    margin-bottom: 50px;
+    line-height: 1.8;
+}
+
+/* Hero product visualization SVG container */
+.hero__product {
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Floating animation for product SVG */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Ring SVG sizing */
+.ring-visualization {
+    width: 300px;
+    height: 300px;
+    max-width: 100%;
+}
+
+/* Ring body animation */
+.ring-body {
+    animation: ring-rotate 8s linear infinite;
+}
+
+@keyframes ring-rotate {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: 100px 100px;
+    }
+    100% {
+        transform: rotate(360deg);
+        transform-origin: 100px 100px;
+    }
+}
+
+/* Ring glow pulsing animation */
+.ring-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        opacity: 0.3;
+        r: 85;
+    }
+    50% {
+        opacity: 0.6;
+        r: 95;
+    }
+}
+
+/* Hero buttons container - flex layout */
+.hero__buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+/* Hero background animated orbs */
+.hero__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Animated gradient orbs - creates depth effect */
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+}
+
+.gradient-orb--1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--color-accent-primary), transparent);
+    top: -50%;
+    right: -10%;
+    animation: float-1 15s ease-in-out infinite;
+}
+
+.gradient-orb--2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--color-accent-secondary), transparent);
+    bottom: -20%;
+    left: -5%;
+    animation: float-2 18s ease-in-out infinite;
+}
+
+@keyframes float-1 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(30px, -30px);
+    }
+}
+
+@keyframes float-2 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-30px, 30px);
+    }
+}
+
+/* ============================================
+   5. BUTTON STYLES
+   ============================================ */
+
+/* Base button styling */
+.btn {
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Primary button - cyan with glow on hover */
+.btn--primary {
+    background: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.btn--primary:hover {
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.6), 0 0 60px rgba(0, 242, 254, 0.3);
+    transform: scale(1.05) translateY(-2px);
+}
+
+.btn--primary:active {
+    transform: scale(0.98);
+}
+
+/* Secondary button - transparent with border */
+.btn--secondary {
+    background: transparent;
+    color: var(--color-accent-primary);
+    border: 2px solid var(--color-accent-primary);
+}
+
+.btn--secondary:hover {
+    background: rgba(0, 242, 254, 0.1);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Outlined primary button */
+.btn--primary-outlined {
+    background: transparent;
+    color: var(--color-accent-primary);
+    border: 2px solid var(--color-accent-primary);
+    padding: 12px 32px;
+}
+
+.btn--primary-outlined:hover {
+    background: rgba(0, 242, 254, 0.1);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+/* ============================================
+   6. FEATURES SECTION
+   ============================================ */
+
+/* Features section spacing */
+.features {
+    padding: 100px 0;
+    position: relative;
+}
+
+/* 3-column responsive grid layout */
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Feature card styling */
+.feature-card {
+    padding: 40px 30px;
+    border-radius: 20px;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+/* Feature card hover effect - lift and glow */
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.2), var(--shadow-deep);
+    border-color: rgba(0, 242, 254, 0.3);
+}
+
+/* Feature icon container */
+.feature-card__icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+.feature-card__icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.2));
+}
+
+/* Feature title styling */
+.feature-card__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Feature description */
+.feature-card__description {
+    color: var(--color-text-secondary);
+    flex-grow: 1;
+    line-height: 1.8;
+}
+
+/* Feature list styling - bullet points */
+.feature-card__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feature-card__list li {
+    color: var(--color-accent-primary);
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Bullet point styling */
+.feature-card__list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    font-size: 0.8rem;
+}
+
+/* ============================================
+   7. SPECIFICATIONS - 3D FLIP CARDS
+   ============================================ */
+
+/* Specs section spacing */
+.specs {
+    padding: 100px 0;
+}
+
+/* 3-column responsive flip card grid */
+.specs__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Flip card container - 3D perspective effect */
+.flip-card {
+    perspective: 1000px;
+    height: 300px;
+}
+
+/* Flip card inner - 3D transform container */
+.flip-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+/* Trigger 3D flip on hover */
+.flip-card:hover .flip-card__inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and back face styling */
+.flip-card__front,
+.flip-card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+/* Front face styling */
+.flip-card__front {
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 16px;
+}
+
+.flip-card__front h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.flip-card__front p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent-primary);
+}
+
+/* Back face styling - rotated 180 degrees */
+.flip-card__back {
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.1), rgba(255, 0, 110, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 16px;
+    transform: rotateY(180deg);
+}
+
+.flip-card__back h4 {
+    font-size: 1.2rem;
+    color: var(--color-accent-primary);
+    margin-bottom: 10px;
+}
+
+.flip-card__back p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+/* ============================================
+   8. PRICING SECTION
+   ============================================ */
+
+/* Pricing section spacing */
+.pricing {
+    padding: 100px 0;
+}
+
+/* Pricing grid - 3 column layout */
+.pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* Pricing card styling */
+.pricing-card {
+    padding: 40px 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+/* Standard pricing card hover effect */
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.15), var(--shadow-deep);
+}
+
+/* Featured pricing card - stands out */
+.pricing-card--featured {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.08), rgba(255, 0, 110, 0.03));
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+}
+
+.pricing-card--featured:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 0 40px rgba(0, 242, 254, 0.25);
+}
+
+/* Badge for featured card */
+.pricing-card__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Pricing header section */
+.pricing-card__header {
+    text-align: center;
+}
+
+.pricing-card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.pricing-card__subtitle {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* Price display styling */
+.pricing-card__price {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-accent-primary);
+    margin: 10px 0;
+}
+
+.price__currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+}
+
+/* Features list in pricing card */
+.pricing-card__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.pricing-card__features li {
+    color: var(--color-text-secondary);
+    padding-left: 20px;
+    position: relative;
+}
+
+.pricing-card__features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-primary);
+    font-weight: 700;
+}
+
+/* ============================================
+   9. CONTACT SECTION
+   ============================================ */
+
+/* Contact section spacing */
+.contact {
+    padding: 100px 0;
+    text-align: center;
+}
+
+/* Contact form styling */
+.contact-form {
+    max-width: 600px;
+    margin: 50px auto 0;
+    padding: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form group spacing */
+.form-group {
+    display: flex;
+}
+
+/* Form input styling */
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 10px;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition-smooth);
+}
+
+/* Form input focus effect */
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+/* Placeholder styling */
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: var(--color-text-secondary);
+}
+
+/* ============================================
+   10. FOOTER
+   ============================================ */
+
+/* Footer section spacing and styling */
+.footer {
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(0, 242, 254, 0.1);
+    padding: 80px 20px 30px;
+    margin-top: 100px;
+}
+
+/* Footer content grid - 4 columns */
+.footer__content {
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+/* Footer section styling */
+.footer__section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--color-accent-primary);
+}
+
+.footer__section p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.footer__section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__section a {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.footer__section a:hover {
+    color: var(--color-accent-primary);
+    padding-left: 5px;
+}
+
+/* Footer bottom section */
+.footer__bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 242, 254, 0.05);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   11. RESPONSIVE DESIGN - TABLET
+   ============================================ */
+
+@media (max-width: 1024px) {
+    /* Adjust grid columns for tablet */
+    .features__grid,
+    .specs__grid,
+    .pricing__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .pricing-card--featured {
+        grid-column: span 2;
+        transform: scale(1.02);
+    }
+
+    .pricing-card--featured:hover {
+        transform: scale(1.05) translateY(-5px);
+    }
+
+    /* Section spacing adjustment */
+    .section__title {
+        font-size: 2.2rem;
+    }
+
+    /* Navbar adjustment */
+    .navbar__container {
+        padding: 0 20px;
+    }
+
+    .navbar__menu {
+        gap: 20px;
+    }
+
+    /* Hero product sizing */
+    .ring-visualization {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Contact form adjustment */
+    .contact-form {
+        padding: 40px 30px;
+    }
+}
+
+/* ============================================
+   12. RESPONSIVE DESIGN - MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Root font size adjustment for mobile */
+    :root {
+        font-size: 14px;
+    }
+
+    /* All grids stack to single column */
+    .features__grid,
+    .specs__grid,
+    .pricing__grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Remove featured card scaling on mobile */
+    .pricing-card--featured {
+        transform: scale(1);
+        grid-column: auto;
+    }
+
+    .pricing-card--featured:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Hero section adjustment */
+    .hero {
+        min-height: auto;
+        padding: 150px 20px 40px;
+    }
+
+    .hero__title {
+        font-size: 2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .hero__buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    /* Ring visualization sizing */
+    .ring-visualization {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* Section spacing */
+    .features,
+    .specs,
+    .pricing,
+    .contact {
+        padding: 60px 0;
+    }
+
+    .section__title {
+        font-size: 1.8rem;
+    }
+
+    /* Navigation menu stack on mobile */
+    .navbar__menu {
+        gap: 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Feature card adjustment */
+    .feature-card {
+        padding: 30px 20px;
+    }
+
+    /* Flip card height adjustment */
+    .flip-card {
+        height: 250px;
+    }
+
+    /* Footer grid simplification */
+    .footer__content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    /* Contact form mobile optimization */
+    .contact-form {
+        max-width: 100%;
+        padding: 30px 20px;
+    }
+
+    /* Gradient orbs - hide on mobile for performance */
+    .gradient-orb {
+        opacity: 0.08;
+    }
+}
+
+/* ============================================
+   13. SMALL MOBILE DEVICES
+   ============================================ */
+
+@media (max-width: 480px) {
+    /* More aggressive sizing for small screens */
+    :root {
+        font-size: 13px;
+    }
+
+    /* Hero title minimum size */
+    .hero__title {
+        font-size: 1.5rem;
+    }
+
+    /* All sections minimum padding */
+    .features,
+    .specs,
+    .pricing,
+    .contact {
+        padding: 40px 0;
+    }
+
+    /* Section header adjustment */
+    .section__header {
+        margin-bottom: 30px;
+    }
+
+    .section__title {
+        font-size: 1.5rem;
+    }
+
+    .section__subtitle {
+        font-size: 0.85rem;
+    }
+
+    /* Card padding reduction */
+    .feature-card,
+    .pricing-card,
+    .contact-form {
+        padding: 20px 15px;
+    }
+
+    /* Footer single column on very small screens */
+    .footer__content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Logo size reduction */
+    .logo__icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .navbar__logo {
+        font-size: 1.2rem;
+    }
+
+    /* Flip card reduced height */
+    .flip-card {
+        height: 200px;
+    }
+
+    .flip-card__front h3,
+    .flip-card__back h4 {
+        font-size: 1rem;
+    }
+
+    .flip-card__front p {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================
+   14. ACCESSIBILITY & ANIMATIONS
+   ============================================ */
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    .gradient-text {
+        -webkit-text-fill-color: var(--color-accent-primary);
+    }
+
+    .glassmorphism {
+        border: 2px solid var(--color-accent-primary);
+    }
+}
+
+/* ============================================
+   15. PRINT STYLES
+   ============================================ */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .navbar,
+    .hero__background,
+    .btn {
+        display: none;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}
